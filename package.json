@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Generate print-friendly homework worksheets for math practice.",
   "dependencies": {
-    "concurrently": "^6.4.0"
+    "concurrently": "latest"
   },  
   "scripts": {
     "preinstall": "npm i serve concurrently opener -g",
