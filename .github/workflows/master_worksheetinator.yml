@@ -24,8 +24,8 @@ jobs:
       #   with:
       #     name: node-app
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
+      # - name: Unzip artifact for deployment
+      #   run: unzip release.zip
       
       - name: Install dependencies
         run: npm install
