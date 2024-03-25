@@ -4,7 +4,7 @@
   "description": "Generate print-friendly homework worksheets for math practice.",
   "scripts": {
     "preinstall": "npm i serve concurrently opener -g",
-    "start": "concurrently \"serve src -p 3022\" \"opener http://localhost:3022\""
+    "start": "concurrently \"serve src -p 80\" \"opener http://localhost:80\""
   },
   "author": "Lewis Nakao <lewdev@gmail.com>",
   "license": "UNLICENSED"
