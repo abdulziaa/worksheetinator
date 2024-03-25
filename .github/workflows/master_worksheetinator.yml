@@ -7,50 +7,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-
-      - name: Install dependencies and start the application
-        run: |
-          npm install
-          npm start
-
-  deploy:
+  deploy: # No separate build job needed
     runs-on: ubuntu-latest
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
     permissions:
-      id-token: write #This is required for requesting the JWT
+      contents: read # Use more restrictive permissions if possible
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: .
+    - name: Install dependencies (if any)
+      run: npm install  # Only if you have external dependencies
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6B2D704CC75C4032A8EA3F95360C70B3 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0EEB6E182BF0486C81287AA0AAE73CC9 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0F2B9927D40F49F0ABBF4FF9CEA747A1 }}
+    - name: Login to Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6B2D704CC75C4032A8EA3F95360C70B3 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0EEB6E182BF0486C81287AA0AAE73CC9 }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0F2B9927D40F49F0ABBF4FF9CEA747A1 }}
 
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'worksheetinator'
-          slot-name: 'Production'
-          package: .  # Change this to the correct path if necessary
+    - name: 'Deploy to Azure Web App'
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'worksheetinator'
+        slot-name: 'Production'
+        package: . # Assuming all HTML/JS/CSS are in the root of your project
