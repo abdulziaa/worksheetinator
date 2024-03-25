@@ -14,7 +14,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     permissions:
-      contents: read # Use more restrictive permissions if possible
+      contents: write # Use more restrictive permissions if possible
 
     steps:
     - name: Checkout code
