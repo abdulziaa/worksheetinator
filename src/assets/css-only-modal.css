@@ -18,8 +18,8 @@ Source: https://codepen.io/timothylong/pen/HhAer/ */
   pointer-events: auto;
 }
 .modal-window > div {
-  width: 90%;
-  height: 90%;
+  width: 50%;
+  height: 75%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,14 +31,14 @@ Source: https://codepen.io/timothylong/pen/HhAer/ */
   -moz-box-shadow: 5px 5px 5px 0px #696969;
   -webkit-box-shadow: 5px 5px 5px 0px #696969;
   box-shadow: 5px 5px 5px 0px #696969;
-  overflow: auto;
+  /* overflow: auto; */
 }
 .modal-window header {
   font-weight: bold;
 }
 .modal-window h1 {
   font-size: 150%;
-  margin: 0 0 15px;
+  /* margin: 0 0 15px; */
   color: #333333;
 }
 

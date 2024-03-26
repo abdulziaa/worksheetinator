@@ -118,168 +118,272 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
 const hwSets = {
   "addition": {
     title: "Addition 1-digit Equations", category: "Addition",
-    count: 1, columns: 4,
+    count: 100, columns: 4,
     useAllPossible1Digit: true,
     xSize: 1, ySize: 1, //number of digits in x & y.
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => horizontalEq(eq, i, columns, "+"),
   },
-  "addition-visual-1": {
-    title: "Addition Visual Equations Level 1 (1-6)", category: "Addition",
-    count: 10, columns: 1,
-    xSize: .6, ySize: .6,
+  "addition-but-harder": {
+    title: "Addition 2-1-digit Equations", category: "Addition",
+    count: 100, columns: 4,
+    useAllPossible1Digit: true,
+    xSize: 2, ySize: 1, //number of digits in x & y.
     mathSymbol: "+",
-    outputFunc: (eq, i) => visualAddition(eq, i, 0, "+", randArr(countable)),
+    outputFunc: (eq, i, columns) => horizontalEq(eq, i, columns, "+"),
   },
-  "addition-visual-2": {
-    title: "Addition Visual Equations Level 2", category: "Addition",
-    count: 10, columns: 1,
-    xSize: 1, ySize: 1,
-    mathSymbol: "+",
-    outputFunc: (eq, i) => visualAddition(eq, i, 0, "+", randArr(countable)),
-  },
+  // "addition-visual-1": {
+  //   title: "Addition Visual Equations Level 1 (1-6)", category: "Addition",
+  //   count: 10, columns: 1,
+  //   xSize: .6, ySize: .6,
+  //   mathSymbol: "+",
+  //   outputFunc: (eq, i) => visualAddition(eq, i, 0, "+", randArr(countable)),
+  // },
+  // "addition-visual-2": {
+  //   title: "Addition Visual Equations Level 2", category: "Addition",
+  //   count: 10, columns: 1,
+  //   xSize: 1, ySize: 1,
+  //   mathSymbol: "+",
+  //   outputFunc: (eq, i) => visualAddition(eq, i, 0, "+", randArr(countable)),
+  // },
   "addition-find-addends": {
     title: "Addition Find Addend Equations", category: "Addition",
-    count: 20, columns: 3,
+    count: 100, columns: 3,
     useAllPossible1Digit: true,
     xSize: 1, ySize: 1, mathSymbol: "+",
     outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "+"),
   },
   "addition-2-1": {
     title: "Addition 2-1-digit Equations", category: "Addition",
-    count: 44, columns: 4,
+    count: 100, columns: 4,
     xSize: 2, ySize: 1, mathSymbol: "+",
     outputFunc: (eq, i, columns) => verticalEq(eq, i, columns, "+"),
   },
   "addition-2-2": {
     title: "Addition 2-digit Equations", category: "Addition",
-    count: 44, columns: 4,
+    count: 100, columns: 4,
     xSize: 2, ySize: 2, mathSymbol: "+",
+    outputFunc: (eq, i, columns) => verticalEq(eq, i, columns, "+"),
+  },
+  "addition-3-2": {
+    title: "Addition 4-2-digit Equations", category: "Addition",
+    count: 100, columns: 4,
+    xSize: 3, ySize: 2, mathSymbol: "+",
     outputFunc: (eq, i, columns) => verticalEq(eq, i, columns, "+"),
   },
   "addition-3-3": {
     title: "Addition 3-digit Equations", category: "Addition",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 3, ySize: 3, mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEq(eq, i, columns, "+", long),
+  },
+  "addition-4-3": {
+    title: "Addition 4-3-digit Equations", category: "Addition",
+    count: 100, columns: 4, long: true,
+    xSize: 4, ySize: 3, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEq(eq, i, columns, "+", long),
   },
   "addition-4-4": {
     title: "Addition 4-digit Equations", category: "Addition",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 4, ySize: 4, mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEq(eq, i, columns, "+", long),
+  },
+  "addition-5-4": {
+    title: "Addition 5-4-digit Equations", category: "Addition",
+    count: 100, columns: 4, long: true,
+    xSize: 5, ySize: 4, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEq(eq, i, columns, "+", long),
   },
   "addition-5-5": {
     title: "Addition 5-digit Equations", category: "Addition",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 5, ySize: 5, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEq(eq, i, columns, "+", long),
   },
   "subtraction": {
     title: "Subtraction 1-digit Equations", category: "Subtraction",
-    count: 64, columns: 4,
+    count: 100, columns: 4,
     xSize: 1, ySize: 1,
     useAllPossible1Digit: 1,
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => horizontalEqZX_(eq, i, columns, "-"),
     answerKey: eq => eq.y,
   },
+  "subtraction-find-diff": {
+    title: "Subtraction Find Difference 1-digit",
+    category: "Subtraction",
+    count: 100,
+    columns: 3,
+    xSize: 1,
+    ySize: 1,
+    mathSymbol: "-",
+    outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(1, 9); // Generate a random number with 2 digits
+        let y = randRange(2, 10); // Generate a random number with 1 digit
+        if (x < y) { // Ensure that x is always greater than or equal to y
+            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        }
+        return { x, y, z: x - y }; // Calculate the solution
+    },
+  },
+  "subtraction-find-diff-2-1": {
+    title: "Subtraction Find Difference 2-1-digit",
+    category: "Subtraction",
+    count: 100,
+    columns: 3,
+    xSize: 1,
+    ySize: 1,
+    mathSymbol: "-",
+    outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(1, 9); // Generate a random number with 2 digits
+        let y = randRange(10, 25); // Generate a random number with 1 digit
+        if (x < y) { // Ensure that x is always greater than or equal to y
+            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        }
+        return { x, y, z: x - y }; // Calculate the solution
+    },
+  },
+  "subtraction-find-diff-2": {
+    title: "Subtraction Find Difference 2-digit",
+    category: "Subtraction",
+    count: 100,
+    columns: 3,
+    xSize: 1,
+    ySize: 1,
+    mathSymbol: "-",
+    outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(10, 98); // Generate a random number with 2 digits
+        let y = randRange(10, 99); // Generate a random number with 1 digit
+        if (x < y) { // Ensure that x is always greater than or equal to y
+            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        }
+        return { x, y, z: x - y }; // Calculate the solution
+    },
+  },
   "subtraction-2-1": {
     title: "Subtraction 2-1-digit Equations", category: "Subtraction",
-    count: 44, columns: 4,
+    count: 100, columns: 4,
     xSize: 1, ySize: 2, mathSymbol: "+",
     outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
     answerKey: eq => eq.y,
   },
   "subtraction-2-2": {
     title: "Subtraction 2-digit Equations", category: "Subtraction",
-    count: 44, columns: 4,
+    count: 100, columns: 4,
     xSize: 2, ySize: 2, mathSymbol: "+",
+    outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+  },
+  "subtraction-3-2": {
+    title: "Subtraction 3-2-digit Equations", category: "Subtraction",
+    count: 100, columns: 4,
+    xSize: 3, ySize: 2, mathSymbol: "+",
     outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
     answerKey: eq => eq.y,
   },
   "subtraction-3-3": {
     title: "Subtraction 3-digit Equations", category: "Subtraction",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 3, ySize: 3, mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
+    answerKey: eq => eq.y,
+  },
+  "subtraction-4-3": {
+    title: "Subtraction 4-3-digit Equations", category: "Subtraction",
+    count: 100, columns: 4, long: true,
+    xSize: 4, ySize: 3, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
   },
   "subtraction-4-4": {
     title: "Subtraction 4-digit Equations", category: "Subtraction",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 4, ySize: 4, mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
+    answerKey: eq => eq.y,
+  },
+  "subtraction-5-4": {
+    title: "Subtraction 5-4-digit Equations", category: "Subtraction",
+    count: 100, columns: 4, long: true,
+    xSize: 5, ySize: 4, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
   },
   "subtraction-5-5": {
     title: "Subtraction 5-digit Equations", category: "Subtraction",
-    count: 44, columns: 4, long: true,
+    count: 100, columns: 4, long: true,
     xSize: 5, ySize: 5, mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
   },
-  "multiplication-vis-emoji": {
-    title: "Muliplication Visual Emoji Equations", category: "Multiplication",
-    count: 16, columns: 2,
-    xSize: 1, ySize: 1,
-    myGenEq: () => {
-      const x = randArr([2,3,4]);
-      const y = randArr([1,2,3,4,5]);
-      const z = x * y;
-      return { x, y, z };
-    },
-    outputFunc: (eq, i, columns) => visualEmojiMultiEq(eq, i, columns),
-  },
-  "multiplication-vis-1": {
-    title: "Muliplication Visual Lvl 1 Equations", category: "Multiplication",
-    count: 16, columns: 2,
-    xSize: 1, ySize: 1,
-    myGenEq: () => {
-      const x = randArr([2,3,4,5,6]);
-      const y = randArr([2,3,4,5,6]);
-      const z = x * y;
-      return { x, y, z };
-    },
-    outputFunc: (eq, i, columns) => visualMultiEq(eq, i, columns, 6),
-  },
-  "multiplication-vis-2": {
-    title: "Muliplication Visual Lvl 2 Equations", category: "Multiplication",
-    count: 16, columns: 2,
-    xSize: 1, ySize: 1,
-    outputFunc: (eq, i, columns) => visualMultiEq(eq, i, columns, 9),
-  },
-  "multiplication-add-1": {
-    title: "Muliplication Add Equations 1", category: "Multiplication",
-    count: 16, columns: 2,
-    myGenEqList: () => {
-      const xList = [6,7,8,9];
-      const yList = [2,3,4,5];
-      const eqList = [];
-      xList.forEach(x => yList.forEach(y => eqList.push({x, y, z: x * y})));
-      eqList.sort(() => Math.random() - 0.5); //shuffle
-      eqList.sort(() => Math.random() - 0.5); //shuffle
-      return eqList;
-    },
-    outputFunc: (eq, i, columns) => multiAddEq(eq, i, columns),
-  },
-  "multiplication-add-2": {
-    title: "Muliplication Add Equations 2", category: "Multiplication",
-    count: 16, columns: 2,
-    myGenEqList: () => {
-      const xList = [6,7,8,9];
-      const yList = [6,7,8,9];
-      const eqList = [];
-      xList.forEach(x => yList.forEach(y => eqList.push({x, y, z: x * y})));
-      eqList.sort(() => Math.random() - 0.5); //shuffle
-      eqList.sort(() => Math.random() - 0.5); //shuffle
-      return eqList;
-    },
-    outputFunc: (eq, i, columns) => multiAddEq2(eq, i, columns),
-  },
+  // "multiplication-vis-emoji": {
+  //   title: "Muliplication Visual Emoji Equations", category: "Multiplication",
+  //   count: 16, columns: 2,
+  //   xSize: 1, ySize: 1,
+  //   myGenEq: () => {
+  //     const x = randArr([2,3,4]);
+  //     const y = randArr([1,2,3,4,5]);
+  //     const z = x * y;
+  //     return { x, y, z };
+  //   },
+  //   outputFunc: (eq, i, columns) => visualEmojiMultiEq(eq, i, columns),
+  // },
+  // "multiplication-vis-1": {
+  //   title: "Muliplication Visual Lvl 1 Equations", category: "Multiplication",
+  //   count: 16, columns: 2,
+  //   xSize: 1, ySize: 1,
+  //   myGenEq: () => {
+  //     const x = randArr([2,3,4,5,6]);
+  //     const y = randArr([2,3,4,5,6]);
+  //     const z = x * y;
+  //     return { x, y, z };
+  //   },
+  //   outputFunc: (eq, i, columns) => visualMultiEq(eq, i, columns, 6),
+  // },
+  // "multiplication-vis-2": {
+  //   title: "Muliplication Visual Lvl 2 Equations", category: "Multiplication",
+  //   count: 16, columns: 2,
+  //   xSize: 1, ySize: 1,
+  //   outputFunc: (eq, i, columns) => visualMultiEq(eq, i, columns, 9),
+  // },
+  // "multiplication-add-1": {
+  //   title: "Muliplication Add Equations 1", category: "Multiplication",
+  //   count: 16, columns: 2,
+  //   myGenEqList: () => {
+  //     const xList = [6,7,8,9];
+  //     const yList = [2,3,4,5];
+  //     const eqList = [];
+  //     xList.forEach(x => yList.forEach(y => eqList.push({x, y, z: x * y})));
+  //     eqList.sort(() => Math.random() - 0.5); //shuffle
+  //     eqList.sort(() => Math.random() - 0.5); //shuffle
+  //     return eqList;
+  //   },
+  //   outputFunc: (eq, i, columns) => multiAddEq(eq, i, columns),
+  // },
+  // "multiplication-add-2": {
+  //   title: "Muliplication Add Equations 2", category: "Multiplication",
+  //   count: 16, columns: 2,
+  //   myGenEqList: () => {
+  //     const xList = [6,7,8,9];
+  //     const yList = [6,7,8,9];
+  //     const eqList = [];
+  //     xList.forEach(x => yList.forEach(y => eqList.push({x, y, z: x * y})));
+  //     eqList.sort(() => Math.random() - 0.5); //shuffle
+  //     eqList.sort(() => Math.random() - 0.5); //shuffle
+  //     return eqList;
+  //   },
+  //   outputFunc: (eq, i, columns) => multiAddEq2(eq, i, columns),
+  // },
   "multiplication": {
     title: "Multiplication 1-digit Equations", category: "Multiplication",
-    count: 64, columns: 4,
+    count: 100, columns: 4,
     xSize: 1, ySize: 1,
     useAllPossible1Digit: 1,
     mathSymbol: "*",
@@ -287,7 +391,7 @@ const hwSets = {
   },
   "multiplication-find-multiple": {
     title: "Multiplication Find Multiple Equations", category: "Multiplication",
-    count: 20, columns: 3,
+    count: 100, columns: 3,
     xSize: 1, ySize: 1,
     useAllPossible1Digit: 1,
     mathSymbol: "*",
@@ -295,7 +399,7 @@ const hwSets = {
   },
   "multiplication-11-13": {
     title: "Multiplication with 11 to 13 Equations", category: "Multiplication",
-    count: 64, columns: 3,
+    count: 100, columns: 3,
     mathSymbol: "*",
     myGenEq: () => {
       const x = randRange(11, 14);
@@ -307,28 +411,28 @@ const hwSets = {
   },
   "multiplication-2-1": {
     title: "Muliplication 2 to 1-digit Equations", category: "Multiplication",
-    count: 44, columns: 4,
+    count: 100, columns: 4,
     xSize: 2, ySize: 1,
     mathSymbol: "*",
     outputFunc: (eq, i, columns) => verticalEq(eq, i, columns, "&times;"),
   },
   "multiplication-2-2": {
     title: "Muliplication 2-digit Equations", category: "Multiplication",
-    count: 28, columns: 4, long: true, answerSpace: 6,
+    count: 100, columns: 4, long: true, answerSpace: 6,
     xSize: 2, ySize: 2,
     mathSymbol: "*",
     outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
   },
   "multiplication-3": {
     title: "Muliplication 3-digit Equations", category: "Multiplication",
-    count: 24, columns: 4, long: true, answerSpace: 10,
+    count: 100, columns: 4, long: true, answerSpace: 10,
     xSize: 3, ySize: 3,
     mathSymbol: "*",
     outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
   },
   "division": {
     title: "Division 1-digit Equations", category: "Division",
-    count: 64, columns: 4,
+    count: 100, columns: 4,
     xSize: 1, ySize: 1,
     useAllPossible1Digit: 1,
     mathSymbol: "*",
@@ -337,7 +441,7 @@ const hwSets = {
   },
   "division-box": {
     title: "Division Box Format Equations", category: "Division",
-    count: 36, columns: 4,
+    count: 100, columns: 4,
     xSize: 1, ySize: 1,
     useAllPossible1Digit: 1,
     mathSymbol: "*",
@@ -346,7 +450,7 @@ const hwSets = {
   },
   "division-box-remainders": {
     title: "Division Box Format w/Remainders Equations", category: "Division",
-    count: 27, columns: 3,
+    count: 100, columns: 3,
     myGenEq: () => {
       const x = randNoOnes();
       const y = randNoOnes();
@@ -359,7 +463,7 @@ const hwSets = {
   },
   "division-long": {
     title: "Long Division Equations", category: "Division",
-    count: 27, columns: 3,
+    count: 100, columns: 3,
     myGenEq: () => {
       const x = randNoOnes();
       const y = randRangeByDigits(2);
@@ -371,7 +475,7 @@ const hwSets = {
   },
   "division-longer": {
     title: "Longer Division Equations", category: "Division",
-    count: 24, columns: 3,
+    count: 100, columns: 3,
     myGenEq: () => {
       const x = randNoOnes();
       const y = randRangeByDigits(3);
@@ -383,7 +487,7 @@ const hwSets = {
   },
   "division-long-remainders": {
     title: "Long Division w/Remainders Equations", category: "Division",
-    count: 27, columns: 3,
+    count: 100, columns: 3,
     myGenEq: () => {
       const x = randNoOnes();
       const y = randRangeByDigits(2);
@@ -396,7 +500,7 @@ const hwSets = {
   },
   "division-longer-remainders": {
     title: "Longer Division w/Remainders Equations", category: "Division",
-    count: 24, columns: 3,
+    count: 100, columns: 3,
     mathSymbol: "*",
     myGenEq: () => {
       const x = randNoOnes();
