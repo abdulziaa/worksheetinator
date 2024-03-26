@@ -118,7 +118,7 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
 const hwSets = {
   "addition": {
     title: "Addition 1-digit Equations", category: "Addition",
-    columns: 4,
+    count: 1, columns: 4,
     useAllPossible1Digit: true,
     xSize: 1, ySize: 1, //number of digits in x & y.
     mathSymbol: "+",

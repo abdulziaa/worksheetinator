@@ -1,9 +1,13 @@
-<!doctype html><html><head><meta charset="utf-8">
-  <title>VSM Worksheet Generator</title>
+<!doctype html>
+
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <title>Worksheetinator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Generate print-friendly randomized math worksheets for practice.">
-  <meta name="author" content="Lewis Nakao">
-  <meta itemprop="image" content="https://lewdev.github.io/apps/hw-gen/img/banner-1200x630.png">
+  <meta name="author" content="Abdul Zia">
   <!-- favicons -->
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
@@ -14,20 +18,6 @@
   <meta name="msapplication-TileColor" content="#ffc40d">
   <meta name="msapplication-config" content="icons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="📝 Math Homework Gen">
-  <meta name="twitter:description" content="Generate print-friendly randomized math worksheets for practice.">
-  <meta name="twitter:site" content="@lewdev">
-  <meta name="twitter:creator" content="@lewdev">
-  <meta name="twitter:image" content="https://lewdev.github.io/apps/hw-gen/img/banner-1200x630.png">
-  <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-  <meta property="og:title" content="📝 Math Homework Gen">
-  <meta property="og:description" content="Generate print-friendly randomized math worksheets for practice.">
-  <meta property="og:url" content="https://lewdev.github.io/apps/hw-gen/">
-  <meta property="og:site_name" content="Lewis Nakao">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://lewdev.github.io/apps/hw-gen/img/banner-1200x630.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,7 +32,7 @@
     <div class="container">
       <div class="navbar-left">
         <a href="#" class="text-decoration-none text-light" onclick="HwGen.intro(); return false;">
-          <h2 class="navbar-title"><img src="icons/android-chrome-192x192.png" class="emoji"/> VSM Worksheet Generator</h2>
+          <h2 class="navbar-title"><img src="icons/android-chrome-192x192.png" class="emoji"/> Worksheetinator</h2>
         </a>
       </div>
       <a href="http://github.com/lewdev/hw-gen" class="btn btn-sm btn-outline-light ml-auto js-ht-download-link" data-type="theme" data-id="96">🐙 View Source</a>
@@ -55,7 +45,7 @@
         <div class="container">
           <div class="header row">
             <div class="col-8">
-              <h1 class="my-jumbo-header">VSM Worksheet Generator</h1>
+              <h1 class="my-jumbo-header">Worksheetinator</h1>
               <span class="lead">
                 Quickly generate random print-friendly worksheets for math practice.
               </span>
@@ -70,97 +60,6 @@
               <div class="icon-shadow ml-auto mr-auto"></div>
             </div>
           </div>
-          <!-- <hr id="features" class="m-5">
-          <div class="row featurette">
-            <div class="col-md-7">
-              <h1>Features <span class="text-muted">that will blow your mind.</span></h1>
-              <ul class="text-lg lead">
-                <li>🙊 No login or registration</li>
-                <li>🆓 No ads 🙈</li>
-                <li>🗝️ Answer key on last page</li>
-                <li>📝 <span id="wsCount"></span> worksheets available</li>
-                <li>♾ Unlimited worksheets!</li>
-                <li>👨‍💻 Open <a href="https://github.com/lewdev/hw-gen">source code</a></li>
-              </ul>
-              <p class="lead"></p>
-            </div>
-            <div class="col-md-5">
-              <div id="screenshotRotation">
-                <img src="img/screenshot-1.png" class="my-img rounded" width="500" />
-              </div>
-            </div>
-          </div>
-          <hr class="m-5">
-          <div class="row featurette">
-            <div class="col-md-5">
-              <div class="text-center p-3" style="font-size: 5rem;">🔄</div>
-            </div>
-            <div class="col-md-7">
-              <h1>Repitition <span class="text-muted">and practice make perfect.</span></h1>
-              <div class="lead text-lg">
-                It is known by parents, teachers, cram schools, and most any profession that practicing the basics is
-                a sure way to <span class="text-info">grow and boost your student's confidence</span>.
-              </div>
-            </div>
-          </div>
-          <hr class="m-5">
-          <div class="row featurette">
-            <div class="col-md-7">
-              <h1>👍 Handwriting <span class="text-muted">👎 typing / touch screens</span></h1>
-              <div class="lead text-lg">
-                <a href="https://www.clearvuehealth.com/writingtyping/">Studies have concluded</a> that
-                writing does <span class="text-info">"lead to better learning"</span>
-                <a href="https://blog.google/inside-google/life-at-google/why-paper-still-so-magical/">on paper</a> over typing.
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="text-center p-3" style="font-size: 5rem;">✍️</div>
-            </div>
-          </div>
-          <hr class="m-5">
-          <div class="featurette">
-            <h1>📰 Updates</h1>
-            <ul>
-              <li>
-                <span class="text-info">6/17/2021</span> - Easier multiplication problems with space to add.
-                <ol>
-                  <li>🔢 Multiplication Add Equations</li>
-                </ol>
-              </li>
-              <li>
-                <span class="text-info">5/31/2021</span> - Easier visual multiplication problems.
-                <ol>
-                  <li>🔢 Multiplication Visual Emoji Equations</li>
-                  <li>🔢 Multiplication Visual Lvl 1 Equations</li>
-                  <li>🔢 Multiplication Visual Lvl 2 Equations</li>
-                </ol>
-              </li>
-              <li>
-                <span class="text-info">5/24/2021</span> - Long division. Make each number more spaced apart so they align.
-                <ol>
-                  <li>🔢 Long Division Equations</li>
-                  <li>🔢 Longer Division Equations</li>
-                  <li>🔢 Long Division w/Remainders Equations</li>
-                  <li>🔢 Longer Division w/Remainders Equations</li>
-                </ol>
-              </li>
-              <li>
-                <span class="text-info">4/31/2021</span> - Easier visual multiplication problems.
-                <ol>
-                  <li>🔢 Multiplication Visual Emoji Equations</li>
-                  <li>🔢 Multiplication Visual Lvl 1 Equations</li>
-                  <li>🔢 Multiplication Visual Lvl 2 Equations</li>
-                </ol>
-              </li>
-            </ul>
-          </div>
-          <hr class="m-5">
-          <div class="row featurette">
-            <div class="col-md-12 text-center">
-              <h1 class="text-muted">Why not?</h1>
-              <button class="btn btn-wide btn-primary btn-lg my-2 mr-2 text-lg mt-5" data-type="theme" data-id="96" onclick="HwGen.start();">Start Now</button>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -204,6 +103,10 @@
       <div class="col-md-6 pt-3">
         <h3>How many worksheets?</h3>
         <select id="worksheetCount" class="form-control"></select>
+      </div>
+      <div class="col-md-6 pt-3">
+        <h3>How many Questions?</h3>
+        <select id="questionCount" class="form-control"></select>
       </div>
       <div class="col-md-6 pt-3">
         <label>
@@ -315,13 +218,6 @@
   </div>
 <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 <script src="js/util.js"></script>
-<script src="js/jp-data.js"></script>
 <script src="js/hw-gen.js"></script>
 <script src="js/hw-sets.js"></script>
-<script src="js/hw-sets-jp.js"></script>
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-2833478-13', 'auto');ga('send', 'pageview');</script>
 </body></html>

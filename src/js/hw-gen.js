@@ -11,6 +11,7 @@ const HwGen = (() => {
   const categoriesView = document.getElementById("categoriesView");
   const worksheetSelectView = document.getElementById("worksheetSelectView");
   const worksheetCountSelect = document.getElementById("worksheetCount");
+  const questionCountSelect = document.getElementById("questionCount");
   const answerKeyChkbx = document.getElementById("answerKeyChkbx");
   const printConfigView = document.getElementById("printConfigView");
   const worksheetView = document.getElementById("worksheetView");
@@ -22,6 +23,7 @@ const HwGen = (() => {
     "selectedCat": "",
     "selectedSet": "",
     "selectedCount": 6,
+    "questionCount": 20,
     "showAnswerKey": true,
   };
   let screenshotInterval = null;
@@ -155,7 +157,7 @@ const HwGen = (() => {
     for (let i = 0; i < data['selectedCount']; i++) {
       const worksheet = worksheetOrig.cloneNode(true)
         , output = worksheet.querySelector(".output")
-        , eqList = myGenEqList ? myGenEqList() : generate(xSize, ySize, mathSymbol, count, useAllPossible1Digit, myGenEq)
+        , eqList = myGenEqList ? myGenEqList() : generate(xSize, ySize, mathSymbol, data['questionCount'], useAllPossible1Digit, myGenEq)
         , titleDiv = worksheet.querySelector(".title")
         , outputStr = eqList.map((eq, i) => outputFunc(eq, i, columns, long, answerSpace)).join("")
         , emoji = randArr(emojis)
@@ -205,6 +207,7 @@ const HwGen = (() => {
       setUrlParam("");
     }
     data['selectedCount'] = worksheetCountSelect ? parseInt(worksheetCountSelect.value) : 1;
+    data['questionCount'] = questionCountSelect ? parseInt(questionCountSelect.value) : 1;
     data['showAnswerKey'] = answerKeyChkbx.checked ? true : false;
   };
   const init = () => {
@@ -215,6 +218,7 @@ const HwGen = (() => {
       data['mode'] = MODE.PRINT_CONFIG;
     }
     worksheetCountSelect.innerHTML = new Array(29).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
+    questionCountSelect.innerHTML = new Array(29).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
     //map sets by Category.
     Object.keys(hwSets).map(a => {
       const hwSet = hwSets[a];
