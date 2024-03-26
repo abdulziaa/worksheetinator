@@ -12,6 +12,7 @@ const HwGen = (() => {
   const worksheetSelectView = document.getElementById("worksheetSelectView");
   const worksheetCountSelect = document.getElementById("worksheetCount");
   const questionCountSelect = document.getElementById("questionCount");
+  const worksheetName = document.getElementById("worksheetName")
   const answerKeyChkbx = document.getElementById("answerKeyChkbx");
   const printConfigView = document.getElementById("printConfigView");
   const worksheetView = document.getElementById("worksheetView");
@@ -163,16 +164,16 @@ const HwGen = (() => {
         , emoji = randArr(emojis)
       ;
       allAnswerKeys.push(`<div class="answer-key-table col-${long ? 6 : 4}">
-        <div class="font-weight-bold">${emoji} ${title} #${i + 1}</div>
+        <div class="font-weight-bold">${emoji} ${data['worksheetName']} #${i + 1}</div>
         <div class="row">${eqList.map(answerKey || function(eq) {return eq.z}).map((a, i) =>
       `<div class="text-nowrap col-${Math.floor(12 / columns)}">${i + 1}.) ${a}</div>`).join("")}</div></div>`);
-      titleDiv.innerHTML = `${emoji} ${title} #${i + 1}`;
+      titleDiv.innerHTML = `${emoji} ${data['worksheetName']} #${i + 1}`;
       output.innerHTML = `<tr${long ? ' class="long"' : ''}>${outputStr}</tr>`;
       worksheetsDiv.appendChild(worksheet);
     }
     hwSetInfoDiv.innerHTML = `${data['selectedCount']} worksheets. ${data['showAnswerKey'] ? '' : 'No '}Answer Key on last page.`;
     answerKeyDiv.innerHTML = data['showAnswerKey'] ? allAnswerKeys.join("") : '';
-    document.title = title;
+    document.title = data['worksheetName'];
   };
   const render = () => {
     window.scrollTo();
@@ -208,6 +209,7 @@ const HwGen = (() => {
     }
     data['selectedCount'] = worksheetCountSelect ? parseInt(worksheetCountSelect.value) : 1;
     data['questionCount'] = questionCountSelect ? parseInt(questionCountSelect.value) : 1;
+    data['worksheetName'] = worksheetName.value;
     data['showAnswerKey'] = answerKeyChkbx.checked ? true : false;
   };
   const init = () => {
@@ -217,8 +219,8 @@ const HwGen = (() => {
       data['selectedCat'] = hwSets[hwSetName].category;
       data['mode'] = MODE.PRINT_CONFIG;
     }
-    worksheetCountSelect.innerHTML = new Array(29).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
-    questionCountSelect.innerHTML = new Array(29).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
+    worksheetCountSelect.innerHTML = new Array(100).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
+    questionCountSelect.innerHTML = new Array(100).fill().map((_, i) => `<option>${i + 1}</option>`).join("");
     //map sets by Category.
     Object.keys(hwSets).map(a => {
       const hwSet = hwSets[a];

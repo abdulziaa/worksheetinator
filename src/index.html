@@ -35,7 +35,7 @@
           <h2 class="navbar-title"><img src="icons/android-chrome-192x192.png" class="emoji"/> Worksheetinator</h2>
         </a>
       </div>
-      <a href="http://github.com/lewdev/hw-gen" class="btn btn-sm btn-outline-light ml-auto js-ht-download-link" data-type="theme" data-id="96">🐙 View Source</a>
+      <a href="http://github.com/abdulziaa/worksheetinator" class="btn btn-sm btn-outline-light ml-auto js-ht-download-link" data-type="theme" data-id="96">🐙 View Source</a>
       <a href="#about" class="btn btn-sm btn-outline-light ml-2 js-ht-download-link" data-type="theme" data-id="96">More Info</a>
     </div>
   </div>
@@ -57,7 +57,6 @@
               <div class="landing-logo text-center">
                 <img src="icons/android-chrome-192x192.png"/>
               </div>
-              <div class="icon-shadow ml-auto mr-auto"></div>
             </div>
           </div>
         </div>
@@ -111,15 +110,23 @@
       <div class="col-md-6 pt-3">
         <label>
         <table><tbody><tr>
-          <td><div class="p-3"><input id="answerKeyChkbx" class="form-control" type="checkbox" checked/></div></td>
-          <td><h3 title="Uncheck if you want to save paper.">Include the Answer Key?</h3></td>
+          <td><h3>Worksheet Name?</h3></td>
+          <td><div class="pl-3"><input id="worksheetName" class="form-control" type="text"/></div></td>
+        </tr></tbody></table>
+        </label>
+      </div>
+      <div class="col-md-6 pt-3">
+        <label>
+        <table><tbody><tr>
+          <td><div><input id="answerKeyChkbx" class="form-control" type="checkbox" checked/></div></td>
+          <td><h3 class="pl-2" title="Uncheck if you want to save paper.">Include the Answer Key?</h3></td>
         </tr></tbody></table>
         </label>
       </div>
       <div class="col-md-12 pt-3">
         <div class="w-50 ml-auto mr-auto">
           <button class="btn btn-lg btn-primary btn-block p-3" onclick="HwGen.preview()">
-            🖨 Preview Worksheets
+            🖨 Generate Worksheets!
           </button>
         </div>
       </div>
@@ -161,11 +168,6 @@
       <p class="text-lg text-info"><a href="https://lewdev.github.com">Originally Made by Lewis Nakao</a></p>
       <a target="_blank" href="https://fairfaxcollegiate.com/virginia-math">Virginia School of Math</a>
       <div class="row m-3">
-        <!-- <div class="col-md-2 text-nowrap pr-0"><a target="_blank" href="https://github.com/lewdev">🐙 GitHub</a></div>
-        <div class="col-md-2 text-nowrap pr-0"><a target="_blank" href="https://facebook.com/SWEinHawaii">📘 Facebook</a></div>
-        <div class="col-md-2 text-nowrap pr-0"><a target="_blank" href="https://www.linkedin.com/in/lewisnakao">👔 LinkedIn</a></div>
-        <div class="col-md-2 text-nowrap pr-0"><a target="_blank" href="http://stackoverflow.com/cv/lewis.nakao">📚 StackOverflow</a></div>
-        <div class="col-md-2 text-nowrap pr-0"><a target="_blank" href="https://www.youtube.com/channel/UCewHmEWXdFVyzn-QaZitKBA"> 🎥 YouTube</a></div> -->
       </div>
     </div>
   </div>
@@ -176,42 +178,15 @@
       <div class="p-3 row">
         <div class="col-md-8">
           <h3>What is this?</h3>
-          <p>A math homework generator that I initially wanted to be simple solution for my daughters.</p>
+            <p>A versatile, free, and highly customizale worksheet generator for simple addition, subtraction, and multiplication problems.</p>
           <h3>Why?</h3>
-          <p>I just wanted some simple equations for her to practice multiplication since I started teaching her.</p>
-          <p>Now it's become a mission to be something better or at least different from what else is out there.</p>
-          <p>I have discovered several other math homework generators, while some were very good, it didn't
-            everything I wanted it to do. So I feel like I should continue to build upon it.</p>
-          <h3>Author: Lewis Nakao</h3>
-          <p>I am a software engineer in Hawaii.</p>
-          <div class="row">
-            <div class="col-6">
-              <a href="https://drive.google.com/open?id=1neZuwiGy5SBrFOiJnbcvcx1Bb-LV8iPP" target="_blank">
-                <i class="fas fa-file-alt"></i> My resume (pdf)
-              </a>
-            </div>
-            <div class="col-6">
-              <a href="https://www.linkedin.com/in/lewisnakao/" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn Profile
-              </a>
-            </div>
-            <div class="col-6">
-              <a href="https://www.facebook.com/lewdev" target="_blank">
-                <i class="fab fa-facebook-square"></i> Facebook Profile
-              </a>
-            </div>
-            <div class="col-6">
-              <a href="https://github.com/lewdev" target="_blank">
-                <i class="fab fa-github-square"></i> Github Profile
-              </a>
-            </div>
-          </div>
-          <p>Libraries Used: <a href="https://fontawesome.com/">Font Awesome</a>, Bootstrap, Twemoji.</p>
-        </div>
-        <div class="col-md-4">
-          <p class="text-center">
-            <img src="img/math-hw-gen.jpg" class="img-fluid rounded my-img">
-          </p>
+            <p>I teach a group of 3rd and 4th graders, and I just needed a simple workshet generator for additional enrichment.
+            </p>
+            <p>I came across the <a href="https://github.com/lewdev/hw-gen/">originial repo</a> in my search for an open-source alternative to Kuta worksheet software.</p>
+            <p>The existing repo gives me a great foundation to start from, and I plan to innovate on the existing features while adding new things to hopefully make this a tool that makes math worksheets more accessible to everyone.</p>
+          <h3>Author: <a href="https://abdulzia.com/">Abdul Zia</a></h3>
+          <h3>Original Author: <a href="https://lewdev.github.io/">Lewis Nakao</a></h3>
+            <p>Libraries Used: Font Awesome, Bootstrap, Twemoji.</p>
         </div>
       </div>
     </div>
