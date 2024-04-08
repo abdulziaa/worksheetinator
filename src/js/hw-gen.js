@@ -58,19 +58,6 @@ const HwGen = (() => {
     data['mode'] = MODE.WORKSHEET_SELECT;
     render();
   };
-  const renderIntro = () => {
-    const wsCount = document.getElementById("wsCount");
-    let sum = 0;
-    Object.keys(hwMap).forEach(a => sum += hwMap[a].length);
-    if (wsCount) wsCount.innerHTML = sum;
-    //go through all screenshots
-    if (screenshotInterval) clearInterval(screenshotInterval);
-    screenshotInterval = setInterval(() => {
-      screenshotRotation.innerHTML = `<img src="img/screenshot-${screenshotNum}.png" class="my-img rounded fade-in" />`;
-      screenshotNum++;
-      if (screenshotNum > 5) screenshotNum = 1;
-    }, 2000);
-  };
   const addBreadcrumb = (arr, action, label, selected) =>
     arr.push(`<li class="breadcrumb-item">${selected ? label :  `<a href="#" onclick="${action} return false;">${label}</a>`}</li>`);
   const renderBreadcrumb = () => {
@@ -91,7 +78,7 @@ const HwGen = (() => {
       case 'Subtraction': return '➖';
       case 'Multiplication': return '✖';
       case 'Division': return '➗';
-      case 'Japanese': return '🇯🇵';
+      case 'Addition Word Problems': return '💬➕';
     }
     return '🔢';
   };
@@ -189,7 +176,7 @@ const HwGen = (() => {
     worksheetView.style.display = data['mode'] === MODE.PREVIEW ? "" : "none";
     handleParams();
     switch (data['mode']) {
-      case MODE.INTRO: renderIntro(); break;
+      // case MODE.INTRO: renderIntro(); break;
       case MODE.CATEGORIES: renderCategories(); break;
       case MODE.WORKSHEET_SELECT: renderWorksheetList(); break;
       case MODE.PREVIEW: renderPreview(); break;
@@ -197,7 +184,7 @@ const HwGen = (() => {
     }
     renderBreadcrumb();
     window.scrollTo(0, 0);
-    twemoji && twemoji.parse(document.body);
+    // twemoji && twemoji.parse(document.body);
   };
   const handleParams = () => {
     if (data['selectedSet'] && hwSets[data['selectedSet']]) {

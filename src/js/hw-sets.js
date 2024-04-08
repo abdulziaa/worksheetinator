@@ -26,6 +26,17 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     </td>
     <td class="answer"><input type="text" class="answer-input down"/></td>
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}`
+  , wordproblem = (eq, i, columns, mathSym) => {
+    const randomObject = objectsArray[rand(objectsArray.length)];
+    const namenumbers = randomInts(2,namesArray.length)
+    console.log("Name 1: ", namesArray[namenumbers[0]],". Name 2: ",namesArray[namenumbers[1]])
+    return `
+    <td class="text-right" style="padding-bottom: 3.5rem;">
+      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[0]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[1]]} has ${eq.y} ${randomObject}. How many ${randomObject} do they have in total?</span></div>
+    </td>
+    ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
+    `;
+  }
   , longDivEq = (eq, i, columns, longer) => `
     <td class="text-muted number"><span class="mr-2">${i + 1}.)</span></td>
     <td>
@@ -46,17 +57,6 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
       </div>
     </td>
     ${((i + 1) % columns) === 0 ? '</tr><tr style="border-top: 3px dotted gray;">' : ''}`
-  , visualEmojiMultiEq = (eq, i, columns) => `
-    <td class="text-muted number"><span class="mr-2">${i + 1}.)</span></td>
-    <td class="text-center multi-vis-emoji">
-      <div class="row" style="width: 28rem; height: 10rem;">
-        ${repeat(`<div class="col-${12 / eq.x} text-center">${repeat(randArr(emojis), eq.y)}</div>`, eq.x)}
-      </div>
-      <div class="equation mt-4 mb-4">
-        ${eq.x} &times; ${eq.y} = <input type="text" class="answer-input down"/>
-      </div>
-    </td>
-    ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}`
   , multiAddEq = (eq, i, columns) => `
     <td class="text-muted number"><span class="mr-2">${i + 1}.)</span></td>
     <td>
@@ -81,17 +81,6 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
       </div>
     </td>
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}`
-  , visualAddition = (eq, i, columns, mathSym, emoji) => `
-    <td rowspan="2" style="height: 10rem;"><div class="number" style="height: 12rem;">${i + 1}.)</div></td>
-    <td class="text-center align-middle">${strXTimes(`<span class="emoji mr-2 text-lg">${emoji}</span>`, eq.x)}</td>
-    <td class="text-center align-middle" rowspan="2">+</td>
-    <td class="text-center align-middle">${strXTimes(`<span class="emoji mr-2 text-lg">${emoji}</span>`, eq.y)}</td>
-    <td class="text-center align-middle" rowspan="2">=</td>
-    <td class="answer align-bottom" rowspan="2"><input type="text" class="answer-input down"/></td>
-    </tr><tr>
-    <td class="text-center align-bottom" style="border-top:0;"><input type="text" class="answer-input down"/></td>
-    <td class="text-center align-bottom" style="border-top:0;"><input type="text" class="answer-input down"/></td>
-    ${((i + 1) % 5) === 0 ? `</tr></tbody><div class="page-break"></div><table><tbody><tr>` : '</tr><tr style="border-top: 3px dotted gray;">'}`
   /**
    * Solve:
    *   x mathSym ___ = y
@@ -221,12 +210,12 @@ const hwSets = {
     outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
     answerKey: eq => eq.y,
     myGenEq: () => {
-        let x = randRange(1, 9); // Generate a random number with 2 digits
-        let y = randRange(2, 10); // Generate a random number with 1 digit
-        if (x < y) { // Ensure that x is always greater than or equal to y
-            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        let x = randRange(1, 9); 
+        let y = randRange(2, 10); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
         }
-        return { x, y, z: x - y }; // Calculate the solution
+        return { x, y, z: x - y }; 
     },
   },
   "subtraction-find-diff-2-1": {
@@ -240,12 +229,12 @@ const hwSets = {
     outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
     answerKey: eq => eq.y,
     myGenEq: () => {
-        let x = randRange(1, 9); // Generate a random number with 2 digits
-        let y = randRange(10, 25); // Generate a random number with 1 digit
-        if (x < y) { // Ensure that x is always greater than or equal to y
-            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        let x = randRange(1, 9); 
+        let y = randRange(10, 25); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
         }
-        return { x, y, z: x - y }; // Calculate the solution
+        return { x, y, z: x - y }; 
     },
   },
   "subtraction-find-diff-2": {
@@ -259,69 +248,165 @@ const hwSets = {
     outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "-"),
     answerKey: eq => eq.y,
     myGenEq: () => {
-        let x = randRange(10, 98); // Generate a random number with 2 digits
-        let y = randRange(10, 99); // Generate a random number with 1 digit
-        if (x < y) { // Ensure that x is always greater than or equal to y
-            [x, y] = [y, x]; // Swap x and y if x is smaller than y
+        let x = randRange(10, 98); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
         }
-        return { x, y, z: x - y }; // Calculate the solution
+        return { x, y, z: x - y }; 
     },
   },
   "subtraction-2-1": {
     title: "Subtraction 2-1-digit Equations", category: "Subtraction",
-    count: 100, columns: 4,
-    xSize: 1, ySize: 2, mathSymbol: "+",
-    outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
+    count: 100, columns: 4, long: true,
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(1, 9); 
+      let z = randRange(10, 99); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
   },
-  "subtraction-2-2": {
+  },
+  "subtraction 2-2": {
     title: "Subtraction 2-digit Equations", category: "Subtraction",
-    count: 100, columns: 4,
-    xSize: 2, ySize: 2, mathSymbol: "+",
-    outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
+    count: 100, columns: 4, long: true,
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(10, 99); 
+      let z = randRange(10, 99); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-3-2": {
     title: "Subtraction 3-2-digit Equations", category: "Subtraction",
-    count: 100, columns: 4,
-    xSize: 3, ySize: 2, mathSymbol: "+",
-    outputFunc: (eq, i, columns) => verticalEqZX_(eq, i, columns, "-"),
+    count: 100, columns: 4, long: true,
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(10, 99); 
+      let z = randRange(100, 999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-3-3": {
     title: "Subtraction 3-digit Equations", category: "Subtraction",
     count: 100, columns: 4, long: true,
-    xSize: 3, ySize: 3, mathSymbol: "+",
+    mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(100, 999); 
+      let z = randRange(100, 999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-4-3": {
     title: "Subtraction 4-3-digit Equations", category: "Subtraction",
     count: 100, columns: 4, long: true,
-    xSize: 4, ySize: 3, mathSymbol: "+",
+    mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(100, 999); 
+      let z = randRange(1000, 9999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-4-4": {
     title: "Subtraction 4-digit Equations", category: "Subtraction",
     count: 100, columns: 4, long: true,
-    xSize: 4, ySize: 4, mathSymbol: "+",
+    mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(1000, 9999); 
+      let z = randRange(1000, 9999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-5-4": {
     title: "Subtraction 5-4-digit Equations", category: "Subtraction",
     count: 100, columns: 4, long: true,
-    xSize: 5, ySize: 4, mathSymbol: "+",
+    mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(1000, 9999); 
+      let z = randRange(10000, 99999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   "subtraction-5-5": {
-    title: "Subtraction 5-digit Equations", category: "Subtraction",
+    title: "Subtraction 5 digit Equations", category: "Subtraction",
     count: 100, columns: 4, long: true,
-    xSize: 5, ySize: 5, mathSymbol: "+",
+    mathSymbol: "+",
     outputFunc: (eq, i, columns, long) => verticalEqZX_(eq, i, columns, "-", long),
     answerKey: eq => eq.y,
+    myGenEq: () => {
+      let x = randRange(10000, 99999); 
+      let z = randRange(10000, 99999); 
+      if (z < x) { 
+          [z, x] = [x, z]; 
+      }
+      let y = z - x
+      console.log(x)
+      console.log(y)
+      console.log(z)
+      return {x, y, z}; 
+  },
   },
   // "multiplication-vis-emoji": {
   //   title: "Muliplication Visual Emoji Equations", category: "Multiplication",
@@ -398,7 +483,7 @@ const hwSets = {
     outputFunc: (eq, i, columns) => horizontalEqX_Y(eq, i, columns, "&times;"),
   },
   "multiplication-11-13": {
-    title: "Multiplication with 11 to 13 Equations", category: "Multiplication",
+    title: "Multiplication 2 to 1-digit (11-14) Equations", category: "Multiplication",
     count: 100, columns: 3,
     mathSymbol: "*",
     myGenEq: () => {
@@ -423,10 +508,45 @@ const hwSets = {
     mathSymbol: "*",
     outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
   },
-  "multiplication-3": {
+  "multiplication-3-2": {
+    title: "Muliplication 3 to 2-digit Equations", category: "Multiplication",
+    count: 100, columns: 4, long: true, answerSpace: 10,
+    xSize: 3, ySize: 2,
+    mathSymbol: "*",
+    outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
+  },
+  "multiplication-3-3": {
     title: "Muliplication 3-digit Equations", category: "Multiplication",
     count: 100, columns: 4, long: true, answerSpace: 10,
     xSize: 3, ySize: 3,
+    mathSymbol: "*",
+    outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
+  },
+  "multiplication-4-3": {
+    title: "Muliplication 4 to 3-digit Equations", category: "Multiplication",
+    count: 100, columns: 4, long: true, answerSpace: 10,
+    xSize: 4, ySize: 3,
+    mathSymbol: "*",
+    outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
+  },
+  "multiplication-4-4": {
+    title: "Muliplication 4-digit Equations", category: "Multiplication",
+    count: 100, columns: 4, long: true, answerSpace: 10,
+    xSize: 4, ySize: 4,
+    mathSymbol: "*",
+    outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
+  },
+  "multiplication-5-4": {
+    title: "Muliplication 5 to 4-digit Equations", category: "Multiplication",
+    count: 100, columns: 4, long: true, answerSpace: 10,
+    xSize: 5, ySize: 4,
+    mathSymbol: "*",
+    outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
+  },
+  "multiplication-5-5": {
+    title: "Muliplication 5-digit Equations", category: "Multiplication",
+    count: 100, columns: 4, long: true, answerSpace: 10,
+    xSize: 5, ySize: 5,
     mathSymbol: "*",
     outputFunc: (eq, i, columns, long, answerSpace) => verticalEq(eq, i, columns, "&times;", long, answerSpace),
   },
@@ -511,5 +631,37 @@ const hwSets = {
     },
     outputFunc: (eq, i, columns) => longDivEq(eq, i, columns, true),
     answerKey: eq => `${eq.y} r. ${eq.remainder}`,
+  },
+  "wp-addition-1digit": {
+    title: "1-Digit Problem", category: "Addition Word Problems",
+    count: 100, columns: 2,
+    useAllPossible1Digit: true,
+    xSize: 1, ySize: 1, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+  },
+  "wp-addition-2-1-digit": {
+    title: "2-1-Digit Problem", category: "Addition Word Problems",
+    count: 100, columns: 2,
+    useAllPossible1Digit: true,
+    xSize: 2, ySize: 1, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+  },
+  "wp-addition-2-digit": {
+    title: "2-Digit Problem", category: "Addition Word Problems",
+    count: 100, columns: 2,
+    useAllPossible1Digit: true,
+    xSize: 2, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+  },
+  "wp-addition-3-2-digit": {
+    title: "3-2-Digit Problem", category: "Addition Word Problems",
+    count: 100, columns: 2,
+    useAllPossible1Digit: true,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
   },
 };
