@@ -30,6 +30,7 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     const randomObject = objectsArray[rand(objectsArray.length)];
     const namenumbers = randomInts(2,namesArray.length)
     console.log("Name 1: ", namesArray[namenumbers[0]],". Name 2: ",namesArray[namenumbers[1]])
+    console.log("X: ", eq.x," Y: ", eq.y)
     return `
     <td class="text-right" style="padding-bottom: 3.5rem;">
       <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[0]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[1]]} has ${eq.y} ${randomObject}. How many ${randomObject} do they have in total?</span></div>
@@ -635,33 +636,65 @@ const hwSets = {
   "wp-addition-1digit": {
     title: "1-Digit Problem", category: "Addition Word Problems",
     count: 100, columns: 2,
-    useAllPossible1Digit: true,
     xSize: 1, ySize: 1, //number of digits in x & y.
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+    answerKey: eq => eq.z,
+    myGenEq: () => {
+        let x = randRange(1, 10); 
+        let y = randRange(1, 10); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
   },
   "wp-addition-2-1-digit": {
     title: "2-1-Digit Problem", category: "Addition Word Problems",
     count: 100, columns: 2,
-    useAllPossible1Digit: true,
     xSize: 2, ySize: 1, //number of digits in x & y.
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+    answerKey: eq => eq.z,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(1, 10); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
   },
   "wp-addition-2-digit": {
     title: "2-Digit Problem", category: "Addition Word Problems",
     count: 100, columns: 2,
-    useAllPossible1Digit: true,
     xSize: 2, ySize: 2, //number of digits in x & y.
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+    answerKey: eq => eq.z,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
   },
   "wp-addition-3-2-digit": {
     title: "3-2-Digit Problem", category: "Addition Word Problems",
     count: 100, columns: 2,
-    useAllPossible1Digit: true,
     xSize: 3, ySize: 2, //number of digits in x & y.
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
+    answerKey: eq => eq.z,
+    myGenEq: () => {
+        let x = randRange(100, 999); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
   },
 };
