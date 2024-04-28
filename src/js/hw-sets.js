@@ -28,24 +28,24 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}`
   , wordproblem = (eq, i, columns, mathSym) => {
     const randomObject = objectsArray[rand(objectsArray.length)];
-    const namenumbers = randomInts(2,namesArray.length)
-    console.log("Name 1: ", namesArray[namenumbers[0]],". Name 2: ",namesArray[namenumbers[1]])
+    const namenumbers = randomInts(3,namesArray.length)
+    console.log("Name 1: ", namesArray[namenumbers[1]],". Name 2: ",namesArray[namenumbers[2]])
     console.log("X: ", eq.x," Y: ", eq.y)
     return `
     <td class="text-right" style="padding-bottom: 3.5rem;">
-      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[0]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[1]]} has ${eq.y} ${randomObject}. How many ${randomObject} do they have in total?</span></div>
+      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[1]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[2]]} has ${eq.y} ${randomObject}. How many ${randomObject} do they have in total?</span></div>
     </td>
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
     `;
   }
   , algebrawordproblem = (eq, i, columns, mathSym) => {
     const randomObject = objectsArray[rand(objectsArray.length)];
-    const namenumbers = randomInts(2,namesArray.length)
-    console.log("Name 1: ", namesArray[namenumbers[0]],". Name 2: ",namesArray[namenumbers[1]])
+    const namenumbers = randomInts(3,namesArray.length)
+    console.log("Name 1: ", namesArray[namenumbers[1]],". Name 2: ",namesArray[namenumbers[2]])
     console.log("X: ", eq.x," Y: ", eq.y)
     return `
     <td class="text-right" style="padding-bottom: 3.5rem;">
-      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[0]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[1]]} has some ${randomObject}. They both have ${eq.z} ${randomObject} all together. How many ${randomObject} does ${namesArray[namenumbers[1]]} have?</span></div>
+      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[1]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[2]]} has some ${randomObject}. They both have ${eq.z} ${randomObject} all together. How many ${randomObject} does ${namesArray[namenumbers[1]]} have?</span></div>
     </td>
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
     `;
