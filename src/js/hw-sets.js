@@ -38,6 +38,18 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
     `;
   }
+  , algebrawordproblem = (eq, i, columns, mathSym) => {
+    const randomObject = objectsArray[rand(objectsArray.length)];
+    const namenumbers = randomInts(2,namesArray.length)
+    console.log("Name 1: ", namesArray[namenumbers[0]],". Name 2: ",namesArray[namenumbers[1]])
+    console.log("X: ", eq.x," Y: ", eq.y)
+    return `
+    <td class="text-right" style="padding-bottom: 3.5rem;">
+      <div class="col-12 text-left">${i + 1}.) <span>${namesArray[namenumbers[0]]} has ${eq.x} ${randomObject}. ${namesArray[namenumbers[1]]} has some ${randomObject}. They both have ${eq.z} ${randomObject} all together. How many ${randomObject} does ${namesArray[namenumbers[1]]} have?</span></div>
+    </td>
+    ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
+    `;
+  }
   , longDivEq = (eq, i, columns, longer) => `
     <td class="text-muted number"><span class="mr-2">${i + 1}.)</span></td>
     <td>
@@ -688,6 +700,22 @@ const hwSets = {
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
     answerKey: eq => eq.z,
+    myGenEq: () => {
+        let x = randRange(100, 999); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
+  },
+  "wp--missing-addition-3-2-digit": {
+    title: "3-2-Digit Algebra Problem", category: "Addition Word Problems",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => algebrawordproblem(eq, i, columns, "+"),
+    answerKey: eq => eq.y,
     myGenEq: () => {
         let x = randRange(100, 999); 
         let y = randRange(10, 99); 
