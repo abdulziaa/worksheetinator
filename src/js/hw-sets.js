@@ -50,6 +50,17 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
     `;
   }
+  , onestepalgebra = (eq, i, columns, mathSym) => {
+    const randomObject = objectsArray[rand(objectsArray.length)];
+    const namenumbers = randomInts(3,namesArray.length)
+    console.log("X: ", eq.x," Y: ", eq.y)
+    return `
+    <td class="text-right" style="padding-bottom: 3.5rem;">
+      <div class="col-12 text-left">${i + 1}.) <span>${eq.x} ${mathSym} 𝑥 = ${eq.z}</span></div>
+    </td>
+    ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
+    `;
+  }
   , longDivEq = (eq, i, columns, longer) => `
     <td class="text-muted number"><span class="mr-2">${i + 1}.)</span></td>
     <td>
@@ -723,6 +734,38 @@ const hwSets = {
             [x, y] = [y, x]; 
         }
         return { x, y, z: x + y }; 
+    },
+  },
+  "1stepaddition": {
+    title: "1 Step Addition", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "+"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(1, 99); 
+        let y = randRange(1, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
+  },
+  "1stepsubtraction": {
+    title: "1 Step Subtraction", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(1, 99); 
+        let y = randRange(1, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x - y }; 
     },
   },
 };

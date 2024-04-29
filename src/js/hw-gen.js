@@ -182,7 +182,7 @@ const HwGen = (() => {
       case MODE.PREVIEW: renderPreview(); break;
       default:
     }
-    renderBreadcrumb();
+    renderBreadcrumb()
     window.scrollTo(0, 0);
     // twemoji && twemoji.parse(document.body);
   };
@@ -197,6 +197,13 @@ const HwGen = (() => {
     data['questionCount'] = questionCountSelect ? parseInt(questionCountSelect.value) : 1;
     data['worksheetName'] = worksheetName.value;
     data['showAnswerKey'] = answerKeyChkbx.checked ? true : false;
+    var x = document.getElementById("negativenumbersdiv");
+    if (data['selectedCat'] === "Pre-Algebra") {
+      console.log("Pre-Algebra Problem")
+      x.style.display = "table-row";
+    } else {
+      x.style.display = "none";
+    }
   };
   const init = () => {
     const hwSetName = getUrlParam("set");
