@@ -125,7 +125,7 @@ const HwGen = (() => {
         </div>
       </div>`;
       }).join("");
-    document.title = `Math Homework Generator | ${data["selectedCat"]}`;
+    document.title = `${data["selectedCat"]}`;
   };
   const renderPreview = () => {
     const worksheetsDiv = document.querySelector(".worksheets")
@@ -195,7 +195,12 @@ const HwGen = (() => {
     }
     data['selectedCount'] = worksheetCountSelect ? parseInt(worksheetCountSelect.value) : 1;
     data['questionCount'] = questionCountSelect ? parseInt(questionCountSelect.value) : 1;
-    data['worksheetName'] = worksheetName.value;
+    console.log('worksheet name: '+ worksheetName.value)
+    if (worksheetName.value !== '') {
+      data['worksheetName'] = worksheetName.value;
+    } else {
+      data['worksheetName'] = "Untitled Worksheet"
+    }
     data['showAnswerKey'] = answerKeyChkbx.checked ? true : false;
     var x = document.getElementById("negativenumbersdiv");
     if (data['selectedCat'] === "Pre-Algebra") {
