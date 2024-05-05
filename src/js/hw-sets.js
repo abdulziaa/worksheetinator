@@ -692,6 +692,7 @@ const hwSets = {
     title: "2-Digit Problem", category: "Addition Word Problems",
     count: 100, columns: 2,
     xSize: 2, ySize: 2, //number of digits in x & y.
+    // comment so that i trigger github action
     mathSymbol: "+",
     outputFunc: (eq, i, columns) => wordproblem(eq, i, columns, "+"),
     answerKey: eq => eq.z,
