@@ -752,6 +752,38 @@ const hwSets = {
         return { x, y, z: x + y }; 
     },
   },
+  "1stepaddition2": {
+    title: "1 Step Addition 2digit", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "+"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
+  },
+  "1stepaddition2-3": {
+    title: "1 Step 2-3digit", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "+"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(100, 999); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x + y }; 
+    },
+  },
   "1stepsubtraction": {
     title: "1 Step Subtraction", category: "Pre-Algebra",
     count: 100, columns: 2,
@@ -766,6 +798,70 @@ const hwSets = {
             [x, y] = [y, x]; 
         }
         return { x, y, z: x - y }; 
+    },
+  },
+  "1stepsubtraction2": {
+    title: "1 Step Subtraction 2digit", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(10, 99); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x - y }; 
+    },
+  },
+  "1stepsubtraction2-3": {
+    title: "1 Step Subtraction 2-3 digit", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "+",
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, "-"),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(10, 99); 
+        let y = randRange(100, 999); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x - y }; 
+    },
+  },
+  "1stepmultiplication": {
+    title: "1 Step Multiplication", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "*",  
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, " ⋅ "),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(2, 12); 
+        let y = randRange(2, 12); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x * y }; 
+    },
+  },
+  "1stepmultiplicationharder": {
+    title: "1 Step Multiplication (harder)", category: "Pre-Algebra",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "*",  
+    outputFunc: (eq, i, columns) => onestepalgebra(eq, i, columns, " ⋅ "),
+    answerKey: eq => eq.y,
+    myGenEq: () => {
+        let x = randRange(2, 20); 
+        let y = randRange(2, 20); 
+        if (x < y) { 
+            [x, y] = [y, x]; 
+        }
+        return { x, y, z: x * y }; 
     },
   },
 };
