@@ -183,7 +183,17 @@ tr.long > td > div.vert-equation > .answer-input { width: 10rem; }
   100% { transform: translatey(0px); }
 }
 
-.landing-logo {
-  transform: translatey(0px);
-  animation: float 3s ease-in-out infinite;
+table.fraction {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: -1.25em;
+}
+
+table.fraction td {
+  line-height: 0.75em;
+}
+
+table.fraction td.top {
+  border-bottom: 1px solid rgb(0, 0, 0);
+  border-top: 0px solid darkgray;
 }

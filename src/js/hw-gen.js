@@ -79,6 +79,8 @@ const HwGen = (() => {
       case 'Multiplication': return '✖';
       case 'Division': return '➗';
       case 'Addition Word Problems': return '💬➕';
+      case 'Pre-Algebra': return '𝑥';
+      case 'Fractions': return '½';
     }
     return '🔢';
   };
@@ -106,7 +108,7 @@ const HwGen = (() => {
       worksheetList.innerHTML = `<div>No selected tab</div>`;
       return;
     }
-    worksheetList.innerHTML = `<h3>Select ${data["selectedCat"]} Worksheet</h3>` +
+    worksheetList.innerHTML = `<h3>Pick your ${data["selectedCat"]} worksheet:</h3>` +
       hwMap[data["selectedCat"]].map((hwSet, i) => {
         const {title, xSize, ySize, mathSymbol, outputFunc, count, name, long, useAllPossible1Digit, myGenEq, myGenEqList} = hwSet;
         const eq = myGenEq ? myGenEq() : myGenEqList ? myGenEqList()[0] : genEquation(xSize, ySize, mathSymbol);

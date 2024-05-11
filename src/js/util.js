@@ -63,3 +63,36 @@ const names = "Malcom Sue Deann Wilbert Viola Ashley Muriel Clark Abigail Lucia 
 const namesArray = names.split(" ");
 const objects = "apples books cars pencils chairs tables cups balls trees computers houses pens bicycles shoes keys windows dogs cats birds coins sandwiches televisions phones hats laptops forks spoons plates doors backpacks watches rulers glasses flowers cookies t-shirts socks gloves bottles trains butterflies rockets cameras balloons cups cones tires fishes jackets belts stairs candles mirrors maps tents globes magnets cakes paintings flags microscopes alarm clocks thermometers microphones bridges scissors matches tissues ladders saws chains lightbulbs hammers nails buttons watches backpacks pillows blankets sunglasses mirrors crayons markers papers clips staplers erasers calculators puzzles cameras vases glasses kites umbrellas gloves mittens scarves"
 const objectsArray = objects.split(" ");
+
+// reduction for fractions: https://stackoverflow.com/questions/4652468/is-there-a-javascript-function-that-reduces-a-fraction
+function reduce(numerator,denominator){
+  var gcd = function gcd(a,b){
+    return b ? gcd(b, a%b) : a;
+  };
+  gcd = gcd(numerator,denominator);
+  return [numerator/gcd, denominator/gcd];
+}
+
+// changing reduced fractions to mixed numbers, returns A/A if it's only a whole number answer
+function toMixedNumber(n, d) {
+  if (d === 0) {
+    throw new Error("Division by zero is not allowed.");
+  }
+
+  if (n < d) {
+    return [0, n , d]; // Already a proper fraction
+  }
+
+  if (n === d) {
+    return [1, 'A' , 'A']; // one
+  }
+
+  if (d === 1) {
+    return [n, 'A' , 'A']; // whole number + whole number
+  }
+
+  var w = Math.floor(n / d);  // Whole number part
+  var remainder = n % d;       // Remaining numerator
+
+  return  [w, remainder, d ]; 
+}

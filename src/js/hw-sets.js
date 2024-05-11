@@ -51,12 +51,38 @@ const verticalEq = (eq, i, columns, mathSym, long, answerSpace) => `
     `;
   }
   , onestepalgebra = (eq, i, columns, mathSym) => {
-    const randomObject = objectsArray[rand(objectsArray.length)];
-    const namenumbers = randomInts(3,namesArray.length)
     console.log("X: ", eq.x," Y: ", eq.y)
     return `
     <td class="text-right" style="padding-bottom: 3.5rem;">
       <div class="col-12 text-left">${i + 1}.) <span>${eq.x} ${mathSym} 𝑥 = ${eq.z}</span></div>
+    </td>
+    ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
+    `;
+  }
+  , fractionsEq = (eq, i, columns, mathSym) => {
+    console.log("X: ", eq.x," Y: ", eq.y)
+    return `
+    <td class="text-right" style="padding-bottom: 3.5rem;">
+      <div class="col-12 text-left">
+          ${i + 1}.)
+          <table class="fraction" style="margin-left:0.3em;">
+              <tr>
+                  <td class="top">${eq.y}</td>
+              </tr>
+              <tr>
+                  <td class="bottom">${eq.x}</td>
+              </tr>
+          </table>
+          ${mathSym}
+          <table class="fraction">
+              <tr>
+                  <td class="top">${eq.v}</td>
+              </tr>
+              <tr>
+                  <td class="bottom">${eq.w}</td>
+              </tr>
+          </table>
+      </div>
     </td>
     ${((i + 1) % columns) === 0 ? '</tr><tr>' : ''}
     `;
@@ -863,6 +889,74 @@ const hwSets = {
             [x, y] = [y, x]; 
         }
         return { x, y, z: x * y }; 
+    },
+  },
+  "1dg-adding_like_dens-nosimp": {
+    title: "Addition (Like Denominators)", category: "Fractions",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "*",  
+    outputFunc: (eq, i, columns) => fractionsEq(eq, i, columns, " + "),
+    answerKey: eq => `
+    <table class="fraction" style="margin-top: 1rem; padding-bottom: 1rem;">
+      <tr>
+        <td class="top">${eq.y + eq.v}</td>
+      </tr>
+      <tr>
+        <td class="bottom">${eq.w}</td>
+      </tr>
+    </table>
+    `,
+    myGenEq: () => {
+        let x = randRange(2, 20); 
+        let y = randRange(2, x);
+        
+        let w = x
+        let v = randRange(2, x); 
+
+        return { x, y, v, w}; 
+    },
+  },
+  "1dg-adding_like_dens-simp": {
+    title: "Addition (Like Denominators) w/ Simplification", category: "Fractions",
+    count: 100, columns: 2,
+    xSize: 3, ySize: 2, //number of digits in x & y.
+    mathSymbol: "*",  
+    outputFunc: (eq, i, columns) => fractionsEq(eq, i, columns, " + "),
+    answerKey: eq => `
+    ${eq.mixed[0] === 0 ? '' : eq.mixed[0]}
+    ${eq.mixed[1] === 'A'? `
+    <table class="fraction" style="margin-top: 1rem; padding-bottom: 1rem; opacity: 0;">
+      <tr>
+        <td class="top">${eq.mixed[1]}</td>
+      </tr>
+      <tr>
+        <td class="bottom">${eq.mixed[2]}</td>
+      </tr>
+    </table>
+    ` : `
+    <table class="fraction" style="margin-top: 1rem; padding-bottom: 1rem;">
+      <tr>
+        <td class="top">${eq.mixed[1]}</td>
+      </tr>
+      <tr>
+        <td class="bottom">${eq.mixed[2]}</td>
+      </tr>
+    </table>
+    `}
+    `,
+    myGenEq: () => {
+        let x = randRange(2, 20); 
+        let y = randRange(1, x);
+        
+        let w = x
+        let v = randRange(1, x); 
+
+        let red = reduce((y + v),w)
+
+        let mixed = toMixedNumber(red[0],red[1])
+
+        return { x, y, v, w, red, mixed}; 
     },
   },
 };
